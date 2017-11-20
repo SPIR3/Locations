@@ -2,7 +2,10 @@
 $(document).on('pageinit', function() {
 	
 	//set up listener for button click
-	$(document).on('click', getPosition);
+	$('#getLocationButton').on('click', getPosition);
+    
+    //set up event listener for watchPosition
+    $('#watchPositionButton').on('click', watchPosition);
 	
 	//change time box to show message
 	$('#time').val("Press the button to get location data");
@@ -29,15 +32,20 @@ function successPosition(position) {
 	
 
 	//lets get some stuff out of the position object
-    // these two lines should make the time stamp into something that means more to people rather than machines. like a date dd/mm/yy.
+    // these two lines should make the time stamp into something that means more to people rather than machines. Like a date dd/mm/yy.
 	var unixtime = new Date (position.timestamp);
+    var time = unixtime.toTimeString();
     var date = unixtime.toDateString();
+    var unix = position.timestamp;
+    
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
 	
 	//OK. Now we want to update the display with the correct values
 	// time is displayed in unix time. This is the number of seconds since Jan 01st 1970.
-	$('#unixtime').val("Recieved data at " + unixtime);
+    $('#unixtime').val("Recieved data at " + unix);
+    $('#time').val("Recieved data at " + time);
+	$('#date').val("Recieved data at " + date);
 	$('#lattext').val("Lat: " + latitude);
 	$('#longtext').val("Lon: " + longitude);	
 }
@@ -49,7 +57,16 @@ function failPosition(error) {
 	
 }
 
-
-	$('#taptext').on("tap",function(){
-    	
- 	}); 
+   
+function watchPosition() {
+       var watchID = navigator.geolocation.watchPosition(successPosition, failPosition, locationOptions);
+    
+    var locationOptions = {
+        maximumAge: 10000,
+        timeout: 6000,
+        enableHighAccuracy: true
+    };
+    
+    $('#watchPositionButton').on("tap", navigation.geolocation.clearWatch(watchID));
+    
+ 	}
