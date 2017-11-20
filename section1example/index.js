@@ -29,13 +29,15 @@ function successPosition(position) {
 	
 
 	//lets get some stuff out of the position object
-	var time = position.timestamp;
+    // these two lines should make the time stamp into something that means more to people rather than machines. like a date dd/mm/yy.
+	var unixtime = new Date (position.timestamp);
+    var date = unixtime.toDateString();
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
 	
 	//OK. Now we want to update the display with the correct values
 	// time is displayed in unix time. This is the number of seconds since Jan 01st 1970.
-	$('#time').val("Recieved data at " + time);
+	$('#unixtime').val("Recieved data at " + unixtime);
 	$('#lattext').val("Lat: " + latitude);
 	$('#longtext').val("Lon: " + longitude);	
 }
