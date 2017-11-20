@@ -34,6 +34,7 @@ function successPosition(position) {
 	var longitude = position.coords.longitude;
 	
 	//OK. Now we want to update the display with the correct values
+	// time is displayed in unix time. This is the number of seconds since Jan 01st 1970.
 	$('#time').val("Recieved data at " + time);
 	$('#lattext').val("Lat: " + latitude);
 	$('#longtext').val("Lon: " + longitude);	
@@ -45,3 +46,8 @@ function failPosition(error) {
 	$('#time').val("Error getting data: " + error);
 	
 }
+
+
+	$('#taptext').on("tap",function(){
+    	
+ 	}); 
