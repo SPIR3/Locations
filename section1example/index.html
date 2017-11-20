@@ -15,26 +15,44 @@
 <div data-role="page" id="pageone">
 
   <div data-role="header">
-    <h1>Header</h1>
+    <h1>Your Location</h1>
   </div>
 
   <div data-role="content">
     <div data-role="fieldcontain">
+        
 		<button id="getLocationButton">Get Location</button>
+        
+        <p> Your location Coordinates.</p>
       	<label for="longtext">Longitude:</label>
       	<input type="text" name="longtext" id="longtext" value=""  />
+        
       	<label for="lattext">Latitude:</label>
       	<input type="text" name="lattext" id="lattext" value=""  />
+        
+         <p> Displaying Unix time.The number of seconds passed since Jan 1st 1970.</p>
+        <label for="unixtime">Unix Time:</label>
+      	<input type="text" name="unixtime" id="unixtime" value=""  />
+        
+        <p> Converting the time from Unix time using toTimeString().</p>
       	<label for="time">Time:</label>
       	<input type="text" name="time" id="time" value=""  />
+        
+        <p> Converting the date from Unix time using toDateString().</p>
+        <label for="date">Date:</label>
+      	<input type="text" name="date" id="date" value=""  />
+        
     </div>
+      
+      <button id="watchPositionButton">Watch Position: On/Off</button>
+      
   </div>
+    
+
 	
 </div>
 
-<div data-role="main" class="ui-content">
-	<button id="taptext">On</button>
-	</div>
+
 
 </body>
 </html>
