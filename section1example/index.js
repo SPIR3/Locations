@@ -57,15 +57,27 @@ function failPosition(error) {
 	
 }
 
+var watchState = false;
    
 function watchPosition() {
        var watchID = navigator.geolocation.watchPosition(successPosition, failPosition, locationOptions);
     
-    var locationOptions = {
+    //switch setup.
+    if watchState = false {
+        watchState = true;
+        
+        var locationOptions = {
         maximumAge: 10000,
         timeout: 6000,
         enableHighAccuracy: true
-    };
+    } else {
+        
+    
+    }
+        
+    }
+    
+
     
     $('#watchPositionButton').on("tap", navigation.geolocation.clearWatch(watchID));
     
